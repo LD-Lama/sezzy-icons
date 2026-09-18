@@ -1,8 +1,9 @@
 {
   "name": "@voartechs/sezzy-icons",
   "version": "0.1.0",
-  "description": "Sezzy icon set as tree-shakeable React components.",
+  "description": "Sezzy icon set, rendered via the SezzyIcon React component.",
   "license": "UNLICENSED",
+  "homepage": "https://voartechs.github.io/sezzy-icons/",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

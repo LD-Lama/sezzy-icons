@@ -1,6 +1,8 @@
 # sezzy-icons
 
-Sezzy's icon set as tree-shakeable React components, published as [`@voartechs/sezzy-icons`](https://www.npmjs.com/package/@voartechs/sezzy-icons) on the public npm registry (no registry auth needed to install).
+Sezzy's icon set, rendered via the `SezzyIcon` React component, published as [`@voartechs/sezzy-icons`](https://www.npmjs.com/package/@voartechs/sezzy-icons) on the public npm registry (no registry auth needed to install).
+
+**[Browse all icons →](https://voartechs.github.io/sezzy-icons/)** — hosted catalog of every icon; click one to copy its name for `SezzyIcon`. Also linked as the package's `homepage` on npm.
 
 ## Install
 
@@ -10,33 +12,17 @@ npm install @voartechs/sezzy-icons
 
 ## Usage
 
-Import the icon you need directly — this tree-shakes cleanly:
-
-```tsx
-import { TickIcon, CrossIcon } from "@voartechs/sezzy-icons";
-
-<TickIcon width={16} height={16} color="green" />
-```
-
-Or resolve an icon dynamically by name (e.g. when the icon comes from config/data):
+Every icon renders through `SezzyIcon` by name — there's no per-icon import, so consumer code stays consistent:
 
 ```tsx
 import { SezzyIcon } from "@voartechs/sezzy-icons";
 
-<SezzyIcon name={iconName} width={20} height={20} />
+<SezzyIcon name="TickIcon" width={20} height={20} />
 ```
 
-`name` accepts any string (autocomplete still suggests known icon names) — an unknown name renders nothing rather than throwing.
+`name` accepts any string (autocomplete still suggests known icon names via the exported `IconName` type) — an unknown name renders nothing rather than throwing. This also means the whole icon set ships in any bundle that imports `SezzyIcon` (no per-icon tree-shaking); with 152 small icons that's a deliberate, acceptable trade-off for a single consistent API.
 
-Every icon forwards standard SVG props (`width`, `height`, `className`, `style`, etc.) onto the root `<svg>` element. Most icons use `stroke="currentcolor"`/`fill="currentcolor"`, so `color` (via CSS `color` or an inline style) controls their color.
-
-## Preview all icons
-
-```bash
-npm run preview
-```
-
-Generates `preview/index.html` — a self-contained page listing every icon in `icons/`. Click an icon to copy its component name (e.g. `TickIcon`) to the clipboard; the search box filters by name. Open the generated file directly in a browser — no server needed.
+`SezzyIcon` forwards standard SVG props (`width`, `height`, `className`, `style`, etc.) onto the root `<svg>` element. Most icons use `stroke="currentcolor"`/`fill="currentcolor"`, so `color` (via CSS `color` or an inline style) controls their color.
 
 ## Repo layout
 
@@ -45,7 +31,7 @@ Generates `preview/index.html` — a self-contained page listing every icon in `
 - `src/SezzyIcon.tsx`, `src/index.ts` — hand-written, stable entry points.
 - `scripts/lib/icons.mjs` — shared naming/SVGO logic used by both generators below.
 - `scripts/generate-icons.mjs` — turns `icons/*.svg` into `src/icons/*.tsx` (SVGR).
-- `scripts/generate-preview.mjs` — turns `icons/*.svg` into `preview/index.html` (the catalog page above).
+- `scripts/generate-preview.mjs` — turns `icons/*.svg` into `preview/index.html`, the source for the [hosted catalog](https://voartechs.github.io/sezzy-icons/). `.github/workflows/pages.yml` runs it and deploys `preview/` to GitHub Pages on every push to `main`.
 
 ## Adding or updating icons
 

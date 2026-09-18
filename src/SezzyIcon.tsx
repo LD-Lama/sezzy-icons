@@ -9,10 +9,9 @@ export interface SezzyIconProps extends SVGProps<SVGSVGElement> {
 }
 
 /**
- * Renders a sezzy-icons icon by name — useful when the icon is chosen
- * dynamically (e.g. driven by config or a name-keyed lookup table).
- * Prefer importing the named icon component directly when the icon is
- * known statically, since that tree-shakes better.
+ * Renders a sezzy-icons icon by name. This is the only way to render an
+ * icon — individual icon components aren't exported, so every consumer
+ * goes through one consistent API.
  */
 export function SezzyIcon({ name, ...props }: SezzyIconProps) {
   const Component = icons[name as IconName];
