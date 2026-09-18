@@ -21,19 +21,31 @@ import { TickIcon, CrossIcon } from "@voartechs/sezzy-icons";
 Or resolve an icon dynamically by name (e.g. when the icon comes from config/data):
 
 ```tsx
-import { SezzyIcon, type IconName } from "@voartechs/sezzy-icons";
+import { SezzyIcon } from "@voartechs/sezzy-icons";
 
-<SezzyIcon name={iconName as IconName} width={20} height={20} />
+<SezzyIcon name={iconName} width={20} height={20} />
 ```
 
+`name` accepts any string (autocomplete still suggests known icon names) — an unknown name renders nothing rather than throwing.
+
 Every icon forwards standard SVG props (`width`, `height`, `className`, `style`, etc.) onto the root `<svg>` element. Most icons use `stroke="currentcolor"`/`fill="currentcolor"`, so `color` (via CSS `color` or an inline style) controls their color.
+
+## Preview all icons
+
+```bash
+npm run preview
+```
+
+Generates `preview/index.html` — a self-contained page listing every icon in `icons/`. Click an icon to copy its component name (e.g. `TickIcon`) to the clipboard; the search box filters by name. Open the generated file directly in a browser — no server needed.
 
 ## Repo layout
 
 - `icons/` — **source of truth.** Raw SVG files, one per icon (nested folders become a name prefix, e.g. `icons/mvt/Cross.svg` → `MvtCross`).
 - `src/icons/` — generated React components + barrel (`npm run generate`). Do not hand-edit; regenerate instead.
 - `src/SezzyIcon.tsx`, `src/index.ts` — hand-written, stable entry points.
-- `scripts/generate-icons.mjs` — SVGO + SVGR pipeline that turns `icons/*.svg` into `src/icons/*.tsx`.
+- `scripts/lib/icons.mjs` — shared naming/SVGO logic used by both generators below.
+- `scripts/generate-icons.mjs` — turns `icons/*.svg` into `src/icons/*.tsx` (SVGR).
+- `scripts/generate-preview.mjs` — turns `icons/*.svg` into `preview/index.html` (the catalog page above).
 
 ## Adding or updating icons
 

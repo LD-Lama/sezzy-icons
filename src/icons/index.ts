@@ -57,15 +57,14 @@ export { default as LateralIcon } from "./LateralIcon";
 export { default as LeftArrowIcon } from "./LeftArrowIcon";
 export { default as LevelIcon } from "./LevelIcon";
 export { default as LinkIcon } from "./LinkIcon";
+export { default as LoaderIcon } from "./LoaderIcon";
 export { default as LoadHaul } from "./LoadHaul";
 export { default as LoadStockpile } from "./LoadStockpile";
-export { default as LoaderIcon } from "./LoaderIcon";
 export { default as Location } from "./Location";
 export { default as LocationIcon } from "./LocationIcon";
 export { default as Logout } from "./Logout";
 export { default as LongHoleDrillIcon } from "./LongHoleDrillIcon";
 export { default as LossTrackerIcon } from "./LossTrackerIcon";
-export { default as MVTIcon } from "./MVTIcon";
 export { default as MagnifyingGlass } from "./MagnifyingGlass";
 export { default as Maintenance } from "./Maintenance";
 export { default as Meetings } from "./Meetings";
@@ -86,8 +85,9 @@ export { default as MvtDiamondDrillIcon } from "./MvtDiamondDrillIcon";
 export { default as MvtDrillCycle } from "./MvtDrillCycle";
 export { default as MvtEdit } from "./MvtEdit";
 export { default as MvtExplosiveTruckIcon } from "./MvtExplosiveTruckIcon";
-export { default as MvtITIcon } from "./MvtITIcon";
+export { default as MVTIcon } from "./MVTIcon";
 export { default as MvtInfoCircle } from "./MvtInfoCircle";
+export { default as MvtITIcon } from "./MvtITIcon";
 export { default as MvtLink } from "./MvtLink";
 export { default as MvtLoaderIcon } from "./MvtLoaderIcon";
 export { default as MvtOnHoldIcon } from "./MvtOnHoldIcon";
@@ -117,8 +117,8 @@ export { default as PlusCircle } from "./PlusCircle";
 export { default as PlusCircleIcon } from "./PlusCircleIcon";
 export { default as PlusIcon } from "./PlusIcon";
 export { default as ProcessingPlant } from "./ProcessingPlant";
-export { default as ProductionSectionIcon } from "./ProductionSectionIcon";
 export { default as Productions } from "./Productions";
+export { default as ProductionSectionIcon } from "./ProductionSectionIcon";
 export { default as Pulse } from "./Pulse";
 export { default as RaiseBoringIcon } from "./RaiseBoringIcon";
 export { default as ReEntryIcon } from "./ReEntryIcon";
@@ -210,15 +210,14 @@ import LateralIconCmp from "./LateralIcon";
 import LeftArrowIconCmp from "./LeftArrowIcon";
 import LevelIconCmp from "./LevelIcon";
 import LinkIconCmp from "./LinkIcon";
+import LoaderIconCmp from "./LoaderIcon";
 import LoadHaulCmp from "./LoadHaul";
 import LoadStockpileCmp from "./LoadStockpile";
-import LoaderIconCmp from "./LoaderIcon";
 import LocationCmp from "./Location";
 import LocationIconCmp from "./LocationIcon";
 import LogoutCmp from "./Logout";
 import LongHoleDrillIconCmp from "./LongHoleDrillIcon";
 import LossTrackerIconCmp from "./LossTrackerIcon";
-import MVTIconCmp from "./MVTIcon";
 import MagnifyingGlassCmp from "./MagnifyingGlass";
 import MaintenanceCmp from "./Maintenance";
 import MeetingsCmp from "./Meetings";
@@ -239,8 +238,9 @@ import MvtDiamondDrillIconCmp from "./MvtDiamondDrillIcon";
 import MvtDrillCycleCmp from "./MvtDrillCycle";
 import MvtEditCmp from "./MvtEdit";
 import MvtExplosiveTruckIconCmp from "./MvtExplosiveTruckIcon";
-import MvtITIconCmp from "./MvtITIcon";
+import MVTIconCmp from "./MVTIcon";
 import MvtInfoCircleCmp from "./MvtInfoCircle";
+import MvtITIconCmp from "./MvtITIcon";
 import MvtLinkCmp from "./MvtLink";
 import MvtLoaderIconCmp from "./MvtLoaderIcon";
 import MvtOnHoldIconCmp from "./MvtOnHoldIcon";
@@ -270,8 +270,8 @@ import PlusCircleCmp from "./PlusCircle";
 import PlusCircleIconCmp from "./PlusCircleIcon";
 import PlusIconCmp from "./PlusIcon";
 import ProcessingPlantCmp from "./ProcessingPlant";
-import ProductionSectionIconCmp from "./ProductionSectionIcon";
 import ProductionsCmp from "./Productions";
+import ProductionSectionIconCmp from "./ProductionSectionIcon";
 import PulseCmp from "./Pulse";
 import RaiseBoringIconCmp from "./RaiseBoringIcon";
 import ReEntryIconCmp from "./ReEntryIcon";
@@ -364,15 +364,14 @@ export const icons = {
   LeftArrowIcon: LeftArrowIconCmp,
   LevelIcon: LevelIconCmp,
   LinkIcon: LinkIconCmp,
+  LoaderIcon: LoaderIconCmp,
   LoadHaul: LoadHaulCmp,
   LoadStockpile: LoadStockpileCmp,
-  LoaderIcon: LoaderIconCmp,
   Location: LocationCmp,
   LocationIcon: LocationIconCmp,
   Logout: LogoutCmp,
   LongHoleDrillIcon: LongHoleDrillIconCmp,
   LossTrackerIcon: LossTrackerIconCmp,
-  MVTIcon: MVTIconCmp,
   MagnifyingGlass: MagnifyingGlassCmp,
   Maintenance: MaintenanceCmp,
   Meetings: MeetingsCmp,
@@ -393,8 +392,9 @@ export const icons = {
   MvtDrillCycle: MvtDrillCycleCmp,
   MvtEdit: MvtEditCmp,
   MvtExplosiveTruckIcon: MvtExplosiveTruckIconCmp,
-  MvtITIcon: MvtITIconCmp,
+  MVTIcon: MVTIconCmp,
   MvtInfoCircle: MvtInfoCircleCmp,
+  MvtITIcon: MvtITIconCmp,
   MvtLink: MvtLinkCmp,
   MvtLoaderIcon: MvtLoaderIconCmp,
   MvtOnHoldIcon: MvtOnHoldIconCmp,
@@ -424,8 +424,8 @@ export const icons = {
   PlusCircleIcon: PlusCircleIconCmp,
   PlusIcon: PlusIconCmp,
   ProcessingPlant: ProcessingPlantCmp,
-  ProductionSectionIcon: ProductionSectionIconCmp,
   Productions: ProductionsCmp,
+  ProductionSectionIcon: ProductionSectionIconCmp,
   Pulse: PulseCmp,
   RaiseBoringIcon: RaiseBoringIconCmp,
   ReEntryIcon: ReEntryIconCmp,

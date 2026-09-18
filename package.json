@@ -27,6 +27,7 @@
   },
   "scripts": {
     "generate": "node scripts/generate-icons.mjs",
+    "preview": "node scripts/generate-preview.mjs",
     "build": "npm run generate && tsup",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"

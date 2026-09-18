@@ -2,7 +2,10 @@ import type { SVGProps } from "react";
 import { icons, type IconName } from "./icons/index";
 
 export interface SezzyIconProps extends SVGProps<SVGSVGElement> {
-  name: IconName;
+  // `string & {}` keeps IconName autocomplete/hints while still accepting
+  // any plain string — callers with a dynamic name (e.g. from config/data)
+  // don't need an `as IconName` cast.
+  name: IconName | (string & {});
 }
 
 /**
@@ -12,6 +15,7 @@ export interface SezzyIconProps extends SVGProps<SVGSVGElement> {
  * known statically, since that tree-shakes better.
  */
 export function SezzyIcon({ name, ...props }: SezzyIconProps) {
-  const Component = icons[name];
+  const Component = icons[name as IconName];
+  if (!Component) return null;
   return <Component {...props} />;
 }
