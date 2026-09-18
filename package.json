@@ -1,0 +1,47 @@
+{
+  "name": "@voartechs/sezzy-icons",
+  "version": "0.1.0",
+  "description": "Sezzy icon set as tree-shakeable React components.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VoarTechs/sezzy-icons.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "generate": "node scripts/generate-icons.mjs",
+    "build": "npm run generate && tsup",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "devDependencies": {
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "svgo": "^3.3.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
+  }
+}
