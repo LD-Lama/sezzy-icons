@@ -2,7 +2,7 @@
 
 Sezzy's icon and illustration assets, rendered via `Sezzy<Category>` React components (e.g. `SezzyIcon`, `SezzyIllustration`), published as [`@voartechs/sezzy-icons`](https://www.npmjs.com/package/@voartechs/sezzy-icons) on the public npm registry (no registry auth needed to install).
 
-**[Browse all assets →](https://voartechs.github.io/sezzy-icons/)** — hosted catalog of everything in `assets/`, grouped by category; click one to copy its ready-to-paste usage. Also linked as the package's `homepage` on npm.
+**[Browse all assets →](https://voartechs.github.io/sezzy-icons/)** — hosted catalog of everything in `assets/`, one tab per category; click an asset to copy its ready-to-paste usage. Also linked as the package's `homepage` on npm.
 
 ## Install
 
