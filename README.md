@@ -21,9 +21,9 @@ import { TickIcon, CrossIcon } from "@voartechs/sezzy-icons";
 Or resolve an icon dynamically by name (e.g. when the icon comes from config/data):
 
 ```tsx
-import { Icon, type IconName } from "@voartechs/sezzy-icons";
+import { SezzyIcon, type IconName } from "@voartechs/sezzy-icons";
 
-<Icon name={iconName as IconName} width={20} height={20} />
+<SezzyIcon name={iconName as IconName} width={20} height={20} />
 ```
 
 Every icon forwards standard SVG props (`width`, `height`, `className`, `style`, etc.) onto the root `<svg>` element. Most icons use `stroke="currentcolor"`/`fill="currentcolor"`, so `color` (via CSS `color` or an inline style) controls their color.
@@ -32,7 +32,7 @@ Every icon forwards standard SVG props (`width`, `height`, `className`, `style`,
 
 - `icons/` — **source of truth.** Raw SVG files, one per icon (nested folders become a name prefix, e.g. `icons/mvt/Cross.svg` → `MvtCross`).
 - `src/icons/` — generated React components + barrel (`npm run generate`). Do not hand-edit; regenerate instead.
-- `src/Icon.tsx`, `src/index.ts` — hand-written, stable entry points.
+- `src/SezzyIcon.tsx`, `src/index.ts` — hand-written, stable entry points.
 - `scripts/generate-icons.mjs` — SVGO + SVGR pipeline that turns `icons/*.svg` into `src/icons/*.tsx`.
 
 ## Adding or updating icons

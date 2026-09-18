@@ -1,3 +1,3 @@
 export * from "./icons/index";
-export { Icon } from "./Icon";
-export type { IconProps } from "./Icon";
+export { SezzyIcon } from "./SezzyIcon";
+export type { SezzyIconProps } from "./SezzyIcon";
