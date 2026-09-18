@@ -1,5 +1,5 @@
-// Shared naming/SVGO logic used by both scripts/generate-icons.mjs
-// (React components) and scripts/generate-preview.mjs (icon catalog page).
+// Shared naming/SVGO logic used by scripts/generate.mjs (React components)
+// and scripts/generate-preview.mjs (the hosted catalog page).
 import { readdirSync, statSync, readFileSync } from "node:fs";
 import { join, relative, dirname, basename, extname } from "node:path";
 
@@ -44,6 +44,12 @@ export function toPascalCase(name) {
     .join("");
 }
 
+/** "icons" -> "Icon", "illustrations" -> "Illustration", "logo" -> "Logo". */
+export function singularPascalCase(name) {
+  const pascal = toPascalCase(name);
+  return pascal.endsWith("s") ? pascal.slice(0, -1) : pascal;
+}
+
 function walkSvgFiles(dir) {
   const results = [];
   for (const entry of readdirSync(dir)) {
@@ -66,23 +72,36 @@ function componentNameFor(sourceDir, filePath) {
   return `${prefix}${base}`;
 }
 
-/** Returns [{ filePath, componentName, svgCode }] for every icon under sourceDir, sorted by name. */
-export function readIcons(sourceDir) {
+/** Returns [{ filePath, componentName, svgCode }] for every SVG under sourceDir, sorted by name. */
+export function readSvgFiles(sourceDir) {
   const files = walkSvgFiles(sourceDir);
   const seen = new Map();
-  const icons = [];
+  const items = [];
 
   for (const filePath of files) {
     const componentName = componentNameFor(sourceDir, filePath);
     if (seen.has(componentName)) {
       throw new Error(
-        `Duplicate icon component name "${componentName}" from "${filePath}" and "${seen.get(componentName)}". Rename one of the source SVGs.`
+        `Duplicate component name "${componentName}" from "${filePath}" and "${seen.get(componentName)}". Rename one of the source SVGs.`
       );
     }
     seen.set(componentName, filePath);
-    icons.push({ filePath, componentName, svgCode: readFileSync(filePath, "utf8") });
+    items.push({ filePath, componentName, svgCode: readFileSync(filePath, "utf8") });
   }
 
-  icons.sort((a, b) => a.componentName.localeCompare(b.componentName));
-  return icons;
+  items.sort((a, b) => a.componentName.localeCompare(b.componentName));
+  return items;
+}
+
+/** Every immediate subdirectory of assetsDir is an asset category (e.g. "icons", "illustrations"). */
+export function discoverCategories(assetsDir) {
+  return readdirSync(assetsDir)
+    .filter((entry) => statSync(join(assetsDir, entry)).isDirectory())
+    .sort()
+    .map((folderName) => ({
+      folderName,
+      dir: join(assetsDir, folderName),
+      componentName: `Sezzy${singularPascalCase(folderName)}`,
+      typeName: `${singularPascalCase(folderName)}Name`,
+    }));
 }

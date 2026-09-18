@@ -1,7 +1,7 @@
 {
   "name": "@voartechs/sezzy-icons",
   "version": "0.1.0",
-  "description": "Sezzy icon set, rendered via the SezzyIcon React component.",
+  "description": "Sezzy icon/illustration assets, rendered via Sezzy<Category> React components.",
   "license": "UNLICENSED",
   "homepage": "https://voartechs.github.io/sezzy-icons/",
   "type": "module",
@@ -27,7 +27,7 @@
     "access": "public"
   },
   "scripts": {
-    "generate": "node scripts/generate-icons.mjs",
+    "generate": "node scripts/generate.mjs",
     "preview": "node scripts/generate-preview.mjs",
     "build": "npm run generate && tsup",
     "typecheck": "tsc --noEmit",
