@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Sezzy icon/illustration assets, rendered via Sezzy<Category> React components.",
   "license": "UNLICENSED",
-  "homepage": "https://voartechs.github.io/sezzy-icons/",
+  "homepage": "https://ld-lama.github.io/sezzy-icons/",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -21,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VoarTechs/sezzy-icons.git"
+    "url": "git+https://github.com/LD-Lama/sezzy-icons.git"
   },
   "publishConfig": {
     "access": "public"

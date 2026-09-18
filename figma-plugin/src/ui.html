@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      /*
+       * Figma injects a live --figma-color-* palette into every plugin UI
+       * iframe that tracks the user's current theme (light/dark/high-contrast)
+       * automatically — no JS or media query needed. Hardcoding colors here
+       * is what made text unreadable in dark theme; everything below is
+       * themed off those variables instead.
+       * https://www.figma.com/plugin-docs/css-variables/
+       */
+      :root { color-scheme: light dark; }
+      body {
+        font: 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 12px;
+        background: var(--figma-color-bg, #ffffff);
+        color: var(--figma-color-text, #1a1a1a);
+      }
+      h2 { font-size: 13px; margin: 0 0 8px; }
+      section { margin-bottom: 14px; }
+      label { display: block; font-weight: 600; margin-bottom: 4px; }
+      input[type="text"],
+      input[type="password"],
+      select,
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px 8px;
+        border: 1px solid var(--figma-color-border, #ccc);
+        border-radius: 4px;
+        font: inherit;
+        margin-bottom: 8px;
+        background: var(--figma-color-bg, #ffffff);
+        color: var(--figma-color-text, #1a1a1a);
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--figma-color-text-tertiary, #999);
+      }
+      select option {
+        background: var(--figma-color-bg, #ffffff);
+        color: var(--figma-color-text, #1a1a1a);
+      }
+      .row { display: flex; gap: 8px; }
+      .row > * { flex: 1; }
+      button {
+        background: var(--figma-color-bg-brand, #18a0fb);
+        color: var(--figma-color-text-onbrand, #ffffff);
+        border: none;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+      }
+      button.secondary {
+        background: transparent;
+        color: var(--figma-color-text-brand, #18a0fb);
+        border: 1px solid var(--figma-color-border-brand, #18a0fb);
+      }
+      button:disabled { opacity: 0.5; cursor: default; }
+      #items { border: 1px solid var(--figma-color-border, #eee); border-radius: 6px; max-height: 160px; overflow-y: auto; }
+      .item { display: flex; align-items: center; gap: 6px; padding: 6px 8px; border-bottom: 1px solid var(--figma-color-border, #f0f0f0); }
+      .item:last-child { border-bottom: none; }
+      .item input[type="text"] { margin-bottom: 0; }
+      .item .layer-name { flex: 0 0 90px; color: var(--figma-color-text-secondary, #888); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .empty { padding: 12px; color: var(--figma-color-text-secondary, #888); text-align: center; }
+      .log-row { display: flex; align-items: center; justify-content: flex-end; margin-top: 8px; }
+      .log-row button.link { font-weight: normal; font-size: 11px; }
+      #log { font-family: monospace; font-size: 11px; white-space: pre-wrap; max-height: 100px; overflow-y: auto; color: var(--figma-color-text-secondary, #555); }
+      .warning { color: var(--figma-color-text-danger, #c0392b); }
+      .header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+      .header-row .repo-label { color: var(--figma-color-text-secondary, #888); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      button.link {
+        all: unset;
+        cursor: pointer;
+        color: var(--figma-color-text-brand, #18a0fb);
+        font-weight: 600;
+        flex: 0 0 auto;
+      }
+      .hint { color: var(--figma-color-text-secondary, #888); margin: -4px 0 12px; }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div id="setupView">
+      <h2>Connect to GitHub</h2>
+      <p class="hint">One-time setup so this plugin can open PRs on your behalf.</p>
+      <label for="owner">Owner</label>
+      <input type="text" id="owner" />
+      <label for="repo">Repo</label>
+      <input type="text" id="repo" />
+      <label for="token">Personal access token (fine-grained, scoped to this repo)</label>
+      <input type="password" id="token" placeholder="github_pat_..." />
+      <button id="saveSettings">Save &amp; continue</button>
+      <button class="link" id="cancelSetup" hidden style="width: 100%; text-align: center; margin-top: 8px;">Cancel</button>
+    </div>
+
+    <div id="mainView" hidden>
+      <div class="header-row">
+        <span class="repo-label" id="repoLabel"></span>
+        <button class="link" id="editConfig">Edit config</button>
+      </div>
+
+      <section>
+        <h2>Selected layers</h2>
+        <div id="items"><div class="empty">Select one or more frames/components in Figma.</div></div>
+      </section>
+
+      <section>
+        <h2>Target category</h2>
+        <select id="category"></select>
+        <input type="text" id="newCategory" placeholder="or type a new category, e.g. banners" />
+      </section>
+
+      <section>
+        <label for="prTitle">PR title</label>
+        <input type="text" id="prTitle" />
+      </section>
+
+      <button id="push">Push to GitHub</button>
+    </div>
+
+    <div class="log-row">
+      <button class="link" id="clearLog" hidden>Clear log</button>
+    </div>
+    <div id="log"></div>
+
+    <script></script>
+  </body>
+</html>

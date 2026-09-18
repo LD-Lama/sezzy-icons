@@ -1,0 +1,17 @@
+{
+  "name": "sezzy-icons-figma-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Figma plugin: export selected layers as SVG and open a PR against LD-Lama/sezzy-icons.",
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.100.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.3"
+  }
+}

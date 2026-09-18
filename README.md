@@ -2,7 +2,7 @@
 
 Sezzy's icon and illustration assets, rendered via `Sezzy<Category>` React components (e.g. `SezzyIcon`, `SezzyIllustration`), published as [`@voartechs/sezzy-icons`](https://www.npmjs.com/package/@voartechs/sezzy-icons) on the public npm registry (no registry auth needed to install).
 
-**[Browse all assets →](https://voartechs.github.io/sezzy-icons/)** — hosted catalog of everything in `assets/`, one tab per category; click an asset to copy its ready-to-paste usage. Also linked as the package's `homepage` on npm.
+**[Browse all assets →](https://ld-lama.github.io/sezzy-icons/)** — hosted catalog of everything in `assets/`, one tab per category; click an asset to copy its ready-to-paste usage. Also linked as the package's `homepage` on npm.
 
 ## Install
 
@@ -40,7 +40,8 @@ Adding `assets/<anything-new>/*.svg` automatically produces a `Sezzy<Anything>` 
 - `src/` — **entirely generated** (`npm run generate`), gitignored like `dist/` — CI and `npm run build` always regenerate it fresh from `assets/`, so it can never drift out of sync with a PR that only touches raw SVGs. Don't hand-edit anything under `src/`.
 - `scripts/lib/svg.mjs` — shared naming/SVGO/category-discovery logic used by both generators below.
 - `scripts/generate.mjs` — turns `assets/<category>/*.svg` into `src/<category>/*.tsx` + `src/Sezzy<Category>.tsx` + `src/index.ts` (SVGR).
-- `scripts/generate-preview.mjs` — turns `assets/**/*.svg` into `preview/index.html`, the source for the [hosted catalog](https://voartechs.github.io/sezzy-icons/). `.github/workflows/pages.yml` runs it and deploys `preview/` to GitHub Pages on every push to `main`.
+- `scripts/generate-preview.mjs` — turns `assets/**/*.svg` into `preview/index.html`, the source for the [hosted catalog](https://ld-lama.github.io/sezzy-icons/). `.github/workflows/pages.yml` runs it and deploys `preview/` to GitHub Pages on every push to `main`.
+- `figma-plugin/` — the Figma plugin designers use to push assets straight from Figma (see "For designers" above).
 
 ## Adding or updating assets
 
@@ -50,13 +51,13 @@ Adding `assets/<anything-new>/*.svg` automatically produces a `Sezzy<Anything>` 
 
 ## For designers: publishing from Figma
 
-Use the [Push My Icons](https://www.figma.com/community/plugin/1500058387867124676/push-my-icons) Figma plugin ([source](https://github.com/aken-you/push-my-icons)) to open a PR straight from Figma — no git required:
+Use [`figma-plugin/`](./figma-plugin) — our own internal Figma plugin for this repo — to open a PR straight from Figma, no git required. It auto-detects existing categories under `assets/`, applies this repo's naming rules to suggest file names, and can make icon-style layers recolorable (swapping whatever fill/stroke color they used in Figma for `currentColor`, so importers can override it via CSS). See [`figma-plugin/README.md`](./figma-plugin/README.md) for one-time setup (importing the plugin, generating a scoped GitHub token) and day-to-day usage. Once a PR's CI passes, it merges itself automatically.
 
-1. Select the frames containing your SVG components.
-2. In the plugin, connect it to `VoarTechs/sezzy-icons` with a GitHub personal access token you generate yourself — use a **fine-grained PAT scoped only to this repo** (permissions: Contents read/write, Metadata read, Pull requests read/write), not an org-wide classic token.
-3. Set the target folder to the right category under `assets/` — e.g. `assets/icons` for small recolorable glyphs, `assets/illustrations` for larger multi-color graphics. **Need a new category** (something that's neither an icon nor an illustration)? Just type a new folder path, e.g. `assets/banners` — pushing to it creates the folder, and the next merge automatically gets you a `SezzyBanner` component. No developer needs to be involved.
-4. Click **Push** — the plugin opens a PR with the added/changed/removed SVGs. CI (`generate` + `typecheck` + `build`) runs automatically; a naming collision or invalid SVG fails the PR before it can be merged.
-5. Once merged, the [hosted preview](https://voartechs.github.io/sezzy-icons/) and the next npm publish both pick up the change automatically.
+Need a new category (something that's neither an icon nor an illustration)? Just type a new folder name in the plugin, e.g. `banners` — pushing to it creates `assets/banners/`, and the next merge automatically gets you a `SezzyBanner` component. No developer needs to be involved.
+
+Once a PR is opened, CI (`generate` + `typecheck` + `build`) runs automatically — a naming collision or invalid SVG fails the PR before it can be merged. Once merged, the [hosted preview](https://ld-lama.github.io/sezzy-icons/) and the next npm publish both pick up the change automatically.
+
+(The community [Push My Icons](https://www.figma.com/community/plugin/1500058387867124676/push-my-icons) plugin also works against this repo if you'd rather not install a locally-built plugin, but it doesn't know this repo's category/naming conventions.)
 
 ## Releasing
 

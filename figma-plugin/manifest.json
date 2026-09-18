@@ -1,0 +1,12 @@
+{
+  "name": "Sezzy Icons → GitHub",
+  "id": "sezzy-icons-push",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": ["figma", "dev"],
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["https://api.github.com"]
+  }
+}
